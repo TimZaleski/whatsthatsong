@@ -1,8 +1,7 @@
-import CarsController from "./Controllers/CarsController.js";
+import SongsController from "./Controllers/SongsController.js";
 
 class App {
-  //valuesController = new ValuesController();
-  carsController = new CarsController()
+  songsController = new SongsController()
 }
 
 window["app"] = new App();

@@ -1,10 +1,10 @@
-import Car from "./Models/Car.js"
+import Song from "./Models/Song.js"
 import { EventEmitter } from "./Utils/EventEmitter.js"
 import { isValidProp } from "./Utils/isValidProp.js"
 
 class AppState extends EventEmitter {
-  /** @type {Car[]} */
-  cars = []
+  /** @type {Song[]} */
+  songs = []
 }
 
 export const ProxyState = new Proxy(new AppState(), {
