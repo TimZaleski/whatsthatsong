@@ -5,6 +5,9 @@ import { isValidProp } from "./Utils/isValidProp.js"
 class AppState extends EventEmitter {
   /** @type {Song[]} */
   songs = []
+  noPreview = []
+  /** @type {Song} */
+  currentSong = null
 }
 
 export const ProxyState = new Proxy(new AppState(), {

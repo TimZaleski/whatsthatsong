@@ -4,10 +4,14 @@ import {api} from "./AxiosService.js"
 
 class SongsService {
  
- async getSongs(playlistID) {
-    let res  = await api.get("playlists/" + playlistID)
-    console.log(res.data)
-    ProxyState.songs = res.data.tracks.items.map(c=> new Song(c))
+ async getSongs(playlistID, token) {
+    let res  = await api.get("playlists/" + playlistID, {headers:{Authorization : "Bearer " + token}})
+    console.log(res.data);
+    let filteredData = res.data.tracks.items.filter(i=> i.track.preview_url != null);
+    let noPreviewSongs = res.data.tracks.items.filter(i=> i.track.preview_url == null);
+    console.log(filteredData);
+    ProxyState.songs = filteredData.map(c=> new Song(c));
+    ProxyState.noPreview = noPreviewSongs.map(c=> new Song(c));
   }
 
 }
