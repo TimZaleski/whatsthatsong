@@ -1,7 +1,8 @@
 import SongsController from "./Controllers/SongsController.js";
+import PlayerController from "./Controllers/PlayerController.js";
 class App {
   songsController = new SongsController(token);
-  
+  playerController = new PlayerController();
 }
 
 

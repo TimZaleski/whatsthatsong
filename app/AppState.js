@@ -1,4 +1,6 @@
 import Song from "./Models/Song.js"
+import Playlist from "./Models/Playlist.js"
+import Player from "./Models/Player.js"
 import { EventEmitter } from "./Utils/EventEmitter.js"
 import { isValidProp } from "./Utils/isValidProp.js"
 
@@ -8,6 +10,10 @@ class AppState extends EventEmitter {
   noPreview = []
   /** @type {Song} */
   currentSong = null
+  /** @type {Playlist} */
+  currentPlaylist = null
+  /** @type {Player} */
+  player = null
 }
 
 export const ProxyState = new Proxy(new AppState(), {

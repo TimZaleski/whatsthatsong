@@ -2,26 +2,13 @@ import { ProxyState } from "../AppState.js"
 import { songsService } from "../Services/SongsService.js"
 
 let i = 0;
-let cd = 35;
-let fcd = 5;
-function _drawSongs() {
-  let songs = ProxyState.songs;
- // let template = ''
-  songs.forEach(song => {
-    // NOTE Getters FAKE properties as methods
-   console.log(song);
-  })
-//   var countDownTimer = setInterval(function(){
-      
-//     firstTimer(countDownTimer);
-// }, 1000);
+let fcd = 4;
 
-// setTimeout(function() { 
-//   var countDownTimer = setInterval(function(){
-    
-//     cdTimer(countDownTimer);
-// }, 1000);
-// }, 5000);
+function _drawSongs() {
+  fcd = 4;
+  var countDownTimer = setInterval(function(){
+    firstTimer(countDownTimer);
+    }, 1000);
 
   setTimeout(function() { 
     gameTimer();
@@ -35,35 +22,24 @@ function _drawSongs() {
 function gameTimer(timer){
   if (i < ProxyState.songs.length)
   {
-console.log(ProxyState.songs[i].previewURL);
+    setTimeout(function() { 
+      fcd = 4;
+      var countDownTimer = setInterval(function(){
+      firstTimer(countDownTimer);
+      }, 1000);
+      }, 30000);
+
     let audio = new Audio(ProxyState.songs[i].previewURL);
     audio.loop = false;
     audio.play(); 
     ProxyState.currentSong = ProxyState.songs[i];
     i++;
+
   }
   else
   {
     i = 0;
     clearInterval(timer);
-  }
-}
-
-function cdTimer(countDownTimer)
-{
-  if (cd === 0)
-  {
-    cd = 35;
-    document.getElementById('notifications').innerHTML = `<h2>Guess the Song Name and Artist!</h2>`;
-  }
-  if(cd <= 5 && cd > 0)
-  {
-    document.getElementById('notifications').innerHTML = `<h2>${cd.toString()}</h2>`;
-    cd--;
-  }
-  if(cd > 5)
-  {
-    cd--;
   }
 }
 
@@ -98,4 +74,5 @@ export default class SongsController {
       console.error(error)
     }
   }
+  
 }
