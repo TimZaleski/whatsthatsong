@@ -41,9 +41,11 @@ export default class PlayerController {
   checkAnswer(){
     window.event.preventDefault();
     let form = window.event.target;
+    // @ts-ignore
+    document.getElementById("answerBtn").disabled = true;
     try {
-      let songToCheck = form['songName'].value.toLowerCase();
-      let artistToCheck = form['artistName'].value.toLowerCase();
+      let songToCheck = form['songName'].value.toLowerCase().trim();
+      let artistToCheck = form['artistName'].value.toLowerCase().trim();
       playerService.checkAnswer(songToCheck, artistToCheck);
       playerService.savePlayer();
       // @ts-ignore

@@ -5,22 +5,28 @@ let i = 0;
 let fcd = 4;
 
 function _drawSongs() {
-  fcd = 4;
-  var countDownTimer = setInterval(function(){
-    firstTimer(countDownTimer);
-    }, 1000);
-
-  setTimeout(function() { 
-    gameTimer();
-    var timer = setInterval(function(){
-      gameTimer(timer);
-  }, 35000);
-   }, 5000);
+  if (ProxyState.songs.length < 20)
+  {
+    document.getElementById('notifications').innerHTML = `<h2>Playlist ${ProxyState.currentPlaylist.id} has fewer than 20 songs with previews.</h2>`;
+  }
+  else
+  {
+    fcd = 4;
+    var countDownTimer = setInterval(function(){
+      firstTimer(countDownTimer);
+      }, 1000);
   
+    setTimeout(function() { 
+      gameTimer();
+      var timer = setInterval(function(){
+        gameTimer(timer);
+    }, 35000);
+     }, 5000);
+  }
 }
 
 function gameTimer(timer){
-  if (i < ProxyState.songs.length)
+  if (i < ProxyState.songs.length && i < 20)
   {
     setTimeout(function() { 
       fcd = 4;
@@ -48,6 +54,8 @@ function firstTimer(countDownTimer)
   if (fcd === 0)
   {
     clearInterval(countDownTimer);
+    // @ts-ignore
+    document.getElementById("answerBtn").disabled = false;
     document.getElementById('notifications').innerHTML = `<h2>Guess the Song Name and Artist!</h2>`;
   }
   if(fcd <= 5 && fcd > 0)
